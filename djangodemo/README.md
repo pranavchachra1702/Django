@@ -12,10 +12,12 @@ Eg: django-admin startproject mysite
 	- This mysite folder will contain another mysite sub-folder inside it along with a manage.py file and project folder structure would look like:
 
     ```json
+
 		mysite (folder)
 		|
 		|--- mysite (sub-folder)
 		|--- manage.py
+        
     ```
 
 	-  Run "python manage.py runserver":

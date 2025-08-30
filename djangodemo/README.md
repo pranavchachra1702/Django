@@ -1,0 +1,107 @@
+**Commands:**
+
+- 1. Command to make project folder in Django:
+```
+       "django-admin startproject <project-folder-name>"
+```
+Eg: django-admin startproject mysite
+
+- To start Django Server:
+	- Navigate inside mysite folder from Virtual environment using "cd mysite")
+
+	- This mysite folder will contain another mysite sub-folder inside it along with a manage.py file and project folder structure would look like:
+
+    ```json
+		mysite (folder)
+		|
+		|--- mysite (sub-folder)
+		|--- manage.py
+    ```
+
+	-  Run "python manage.py runserver":
+
+    - Django server starts on http://127.0.0.1:8000/ & now project folder structure becomes:
+
+        ```json
+
+     		mysite (folder) : app folder and project folder is made inside this folder
+     		|
+     		|___ mysite (sub-folder) [this is Project folder]
+     		|___ manage.py
+            |___ db.sqlite3
+
+        ```
+
+- 4. Install DB Browser for SQLite using this Link: 
+	```
+    https://sqlitebrowser.org/dl/
+    ```
+	(Standard Installer for 64-bit Installer)
+
+- 5. The mysite sub-folder (This is the project folder) contains 5 files:
+
+```json
+	|--- __init__.py: Initialize mysite as a package folder
+	|--- asgi.py: (Asynchronous Server Gateway Interface) :
+	|    (This file is changed when hosting is done on cloud server]
+	|--- wsgi.py: (Web Server Gateway Interface)
+	|	(Above 2 are Django server's configuration files) [Not to be changed]
+	|--- settings.py:
+	|	All settings(like Database Connections, etc.) are done in this file
+	|--- urls.py:
+	|	This  file  contains  the  listed  URLs  of  the  application.  In  this  file,  we  can 
+		mention the urls and corresponding actions to perform the task and display the view.
+		(In this we get a 'path' method which we use to make URLs (Routing))
+		(All URL's of a website are registered here)
+
+```
+
+
+- 6. Command to make app folder:
+```
+	"python manage.py startapp <app-folder name>"
+```
+
+Eg: python manage.py startapp demo
+	- Now if server is run using "python manage.py runserver" then it shows this warning:
+
+            ```
+			You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+            ```
+
+	- This means Project folder and app folder created are not linked yet 
+		Fix: Run 'python manage.py migrate' to apply them.
+			On running this by default 11 tables get created in Database
+
+		demo folder contains these files:
+		|--- __init__.py: Initializes app folder
+		|--- admin.py: To register models on admin panel. Until a model is registered here we cant see it on admin pannel
+		|--- apps.py: 
+		|--- models.py:
+		|--- tests.py:
+		|--- views.py:
+	
+
+- 7. admin.py:
+
+	When we use "python manage.py runserver", Django server runs on http://127.0.0.1:8000/
+	Now if we navigate to http://127.0.0.1:8000/admin : we see a Dialog Box with Username & Password field. We need to generate these
+
+	Command to generate a superuser: 
+    ```
+		"python manage.py createsuperuser"
+    ```
+    After running this, it will ask for username, email-id and Password; so we can enter anything when running locally:
+
+(When Prompted, press 'y')
+```
+    Password (again):
+    The password is too similar to the username.
+    This password is too short. It must contain at least 8 characters.
+    This password is too common.
+    Bypass password validation and create user anyway? [y/N]: y (press 'y)
+    Superuser created successfully.
+```
+
+After this again run the server and enter username and password
+

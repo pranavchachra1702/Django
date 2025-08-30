@@ -1,6 +1,59 @@
 # Django Project Setup Guide
 
-## Table of Contents
+## Steps to run locally:
+
+### 1. Clone the repo
+```bash
+git clone <repository-url>
+```
+
+---
+
+### 2. Navigate inside the `djangodemo` folder and create a virtual environment
+```bash
+cd djangodemo
+python -m venv venv
+```
+
+---
+
+### 3. Activate the virtual environment
+- On **Windows**:
+```bash
+venv\Scripts\activate
+```
+- On **macOS/Linux**:
+```bash
+source venv/bin/activate
+```
+
+---
+
+### 4. Install all dependencies
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 5. Navigate again into the `djangodemo` folder
+```bash
+cd djangodemo
+```
+
+---
+
+### 6. Run the Django development server
+```bash
+python manage.py runserver
+```
+
+The server will start at:
+```
+http://127.0.0.1:8000/
+```
+
+## Notes on Project Components
 1. [Create a Django Project](#1-create-a-django-project)
 2. [Start the Django Server](#2-start-the-django-server)
 3. [Install DB Browser for SQLite](#3-install-db-browser-for-sqlite)
@@ -146,3 +199,10 @@ Bypass password validation and create user anyway? [y/N]: y
 ✅ Superuser created successfully.
 
 After this, run the server again and log in with your username and password.
+
+
+Lecture 2:
+
+HttpResponse is used to display a single message only 
+
+To render an entire HTML Page we use render method

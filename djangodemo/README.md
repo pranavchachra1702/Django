@@ -1,109 +1,148 @@
-**Commands:**
+# Django Project Setup Guide
 
-- 1. Command to make project folder in Django:
+## Table of Contents
+1. [Create a Django Project](#1-create-a-django-project)
+2. [Start the Django Server](#2-start-the-django-server)
+3. [Install DB Browser for SQLite](#3-install-db-browser-for-sqlite)
+4. [Project Folder Structure](#4-project-folder-structure)
+5. [Create an App Folder](#5-create-an-app-folder)
+6. [App Folder Structure](#6-app-folder-structure)
+7. [Admin Panel Setup](#7-admin-panel-setup)
+
+---
+
+## 1. Create a Django Project
+### Steps:
+- Create a new Django project using:
+```bash
+django-admin startproject <project-folder-name>
 ```
-       "django-admin startproject <project-folder-name>"
-```
-Eg: django-admin startproject mysite
-
-- To start Django Server:
-	- Navigate inside mysite folder from Virtual environment using "cd mysite")
-
-	- This mysite folder will contain another mysite sub-folder inside it along with a manage.py file and project folder structure would look like:
-
-    ```json
-
-		mysite (folder)
-		|
-		|--- mysite (sub-folder)
-		|--- manage.py
-        
-    ```
-
-	-  Run "python manage.py runserver":
-
-    - Django server starts on http://127.0.0.1:8000/ & now project folder structure becomes:
-
-        ```json
-
-     		mysite (folder) : app folder and project folder is made inside this folder
-     		|
-     		|___ mysite (sub-folder) [this is Project folder]
-     		|___ manage.py
-            |___ db.sqlite3
-
-        ```
-
-- 4. Install DB Browser for SQLite using this Link: 
-	```
-    https://sqlitebrowser.org/dl/
-    ```
-	(Standard Installer for 64-bit Installer)
-
-- 5. The mysite sub-folder (This is the project folder) contains 5 files:
-
-```json
-	|--- __init__.py: Initialize mysite as a package folder
-	|--- asgi.py: (Asynchronous Server Gateway Interface) :
-	|    (This file is changed when hosting is done on cloud server]
-	|--- wsgi.py: (Web Server Gateway Interface)
-	|	(Above 2 are Django server's configuration files) [Not to be changed]
-	|--- settings.py:
-	|	All settings(like Database Connections, etc.) are done in this file
-	|--- urls.py:
-	|	This  file  contains  the  listed  URLs  of  the  application.  In  this  file,  we  can 
-		mention the urls and corresponding actions to perform the task and display the view.
-		(In this we get a 'path' method which we use to make URLs (Routing))
-		(All URL's of a website are registered here)
-
+**Example:**
+```bash
+django-admin startproject mysite
 ```
 
+---
 
-- 6. Command to make app folder:
+## 2. Start the Django Server
+### Steps:
+- Navigate inside the project folder:
+```bash
+cd mysite
 ```
-	"python manage.py startapp <app-folder name>"
+- The `mysite` folder will contain another sub-folder named `mysite` along with `manage.py`.
+Folder structure:
+```plaintext
+mysite/
+├── mysite/
+└── manage.py
 ```
-
-Eg: python manage.py startapp demo
-	- Now if server is run using "python manage.py runserver" then it shows this warning:
-
-            ```
-			You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
-            ```
-
-	- This means Project folder and app folder created are not linked yet 
-		Fix: Run 'python manage.py migrate' to apply them.
-			On running this by default 11 tables get created in Database
-
-		demo folder contains these files:
-		|--- __init__.py: Initializes app folder
-		|--- admin.py: To register models on admin panel. Until a model is registered here we cant see it on admin pannel
-		|--- apps.py: 
-		|--- models.py:
-		|--- tests.py:
-		|--- views.py:
-	
-
-- 7. admin.py:
-
-	When we use "python manage.py runserver", Django server runs on http://127.0.0.1:8000/
-	Now if we navigate to http://127.0.0.1:8000/admin : we see a Dialog Box with Username & Password field. We need to generate these
-
-	Command to generate a superuser: 
-    ```
-		"python manage.py createsuperuser"
-    ```
-    After running this, it will ask for username, email-id and Password; so we can enter anything when running locally:
-
-(When Prompted, press 'y')
+- Run the Django development server:
+```bash
+python manage.py runserver
 ```
-    Password (again):
-    The password is too similar to the username.
-    This password is too short. It must contain at least 8 characters.
-    This password is too common.
-    Bypass password validation and create user anyway? [y/N]: y (press 'y)
-    Superuser created successfully.
+- The Django server starts on:
+```
+http://127.0.0.1:8000/
+```
+After running the server, the project folder structure becomes:
+```plaintext
+mysite/
+├── mysite/    # Project folder
+├── manage.py
+└── db.sqlite3
 ```
 
-After this again run the server and enter username and password
+---
 
+## 3. Install DB Browser for SQLite
+### Steps:
+- Download from:
+```
+https://sqlitebrowser.org/dl/
+```
+- Choose the Standard Installer for 64-bit.
+
+---
+
+## 4. Project Folder Structure
+Inside the `mysite/mysite` sub-folder, you will find:
+```plaintext
+|--- __init__.py   # Initializes mysite as a package
+|--- asgi.py       # Asynchronous Server Gateway Interface (used for async hosting)
+|--- wsgi.py       # Web Server Gateway Interface (used for deployment)
+|--- settings.py   # All settings (Database configs, Installed apps, etc.)
+|--- urls.py       # Contains all URL routes (routing for the application)
+```
+
+---
+
+## 5. Create an App Folder
+### Steps:
+- Create an app folder inside your Django project:
+```bash
+python manage.py startapp <app-folder-name>
+```
+**Example:**
+```bash
+python manage.py startapp demo
+```
+- If you run the server now:
+```bash
+python manage.py runserver
+```
+You might see this warning:
+```plaintext
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+```
+✅ Fix this by running:
+```bash
+python manage.py migrate
+```
+By default, 11 tables will be created in the database.
+
+---
+
+## 6. App Folder Structure
+The `demo` folder contains these files:
+```plaintext
+|--- __init__.py  # Initializes app folder
+|--- admin.py     # Register models for admin panel
+|--- apps.py
+|--- models.py    # Define database models
+|--- tests.py
+|--- views.py
+```
+
+---
+
+## 7. Admin Panel Setup
+### Steps:
+- Django runs on:
+```
+http://127.0.0.1:8000/
+```
+- For the admin panel, go to:
+```
+http://127.0.0.1:8000/admin
+```
+- It will ask for username and password → You need to create a superuser:
+```bash
+python manage.py createsuperuser
+```
+When prompted, enter:
+- Username
+- Email
+- Password (You can bypass validation locally by pressing `y`)
+
+**Example Output:**
+```plaintext
+Password (again):
+The password is too similar to the username.
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+```
+✅ Superuser created successfully.
+
+After this, run the server again and log in with your username and password.
